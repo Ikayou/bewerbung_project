@@ -1,0 +1,47 @@
+{% extends "base/bewerbung_base.html" %}
+
+{% block body %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Bewerbung List</h2>
+    <a href="{% url 'bewerbung_add' %}" class="btn btn-primary">Add Bewerbung</a>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Date Applied</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bewerbung in bewerbungen %}
+        <tr>
+            <td>{{ bewerbung.name }}</td>
+            <td>{{ bewerbung.company }}</td>
+            <td>{{ bewerbung.position }}</td>
+            <td>{{ bewerbung.date_applied }}</td>
+            <td>{{ bewerbung.get_status_display }}</td>
+            <td>
+                <a href="{% url 'bewerbung_edit' bewerbung.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'bewerbung_delete' bewerbung.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">No Bewerbungen found.</td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+<form action="{% url 'logout' %}" method="post" class="w-50">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary btn-lg w-20s shadow">Logout</button>
+</form>
+
+{% endblock %}

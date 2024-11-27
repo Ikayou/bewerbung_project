@@ -1,0 +1,13 @@
+{% extends "base/bewerbung_base.html" %}
+
+{% block head %}
+    <title>{{ bewerbung.name }} - {{ bewerbung.company }}</title>
+{% endblock %}
+
+{% block body %}
+    <h1>{{ bewerbung.name }}</h1>
+    <p>Position: {{ bewerbung.position }}</p>
+    <p>Bewerbungsdatum: {{ bewerbung.date_applied }}</p>
+    <p>Status: {{ bewerbung.get_status_display }}</p>
+    <a href="/">Zurück zur Liste</a>
+{% endblock %}

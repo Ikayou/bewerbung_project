@@ -1,0 +1,12 @@
+{% extends "base/bewerbung_base.html" %}
+
+{% block body %}
+<h2>Delete Bewerbung</h2>
+<p>Are you sure you want to delete this Bewerbung?</p>
+<p><strong>{{ object }}</strong></p>
+<form method="post" class="mt-4">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'bewerbung_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
